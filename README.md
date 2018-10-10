@@ -22,6 +22,7 @@ The `from fastai...` commands handle most of the libraries I want to import. The
 
 ## Jupyter specifics
 
+### Magic commands
 So called "magic commands" are functions specific to Jupyter which are called by putting "%" in front of the command.  
 `%timeit` measures the execution duration of a function. `%prun` runs a function through the python profiler which analyses the runtime of each part of the function and subfunctions called.
 ```python
@@ -31,27 +32,20 @@ So called "magic commands" are functions specific to Jupyter which are called by
 If you run a cell and get an exception, `%debug` is your friend. The `%debug` magic opens an interactive debugger that brings you to where the exception occurred and allows you to step in and out of the functions called.
 https://twitter.com/radekosmulski/status/945739571735748609
 
-
-<br>
+### Bash
 Access bash commands by using `!` beforehands and use curly brackets to access Python variables in Jupyter. Following command prints the content of a specific folder in Jupyter.
 ```python
 PATH = "path/to/folder/"
 !ls {PATH}
 ```
-<br>
-<br>
-**Bash**
-
 Get a sense of the dataset before importing it (especially handy and fast when handling very big datasets).
 ```python
 !head path/to/file.csv
 ```
-<br>
 Show the contents of a folder and its sizes. `-l` shows file or directory size, modified date and time, file or folder name and owner of file and its permission. The `h` option prints the output in 'Human Readable Format'.
 ```python
 !ls -lh
 ```
-<br>
 `wc` is a bash command that counts words, lines, and bytes or character. Following command counts mumber of newlines.
 ```
 wc -l
@@ -91,6 +85,9 @@ def get_overview_of_dataset(FILES):
 |%W|Week number of the year [00, 53];<br>Monday is considered the first day of the week,<br>and days before the first Monday of the year are “week 0”|
 |%z|UTC time zone offset as+HHMMor-HHMM;<br>empty if time zone naive %F Shortcut for%Y-%m-%d(e.g.,2012-4-18)|
 |%D|Shortcut for%m/%d/%y(e.g.,04/18/12)|
+
+
+```python
 
 ### Data types
 
@@ -134,8 +131,7 @@ zipped = zip(seq1, seq2)
 list(zipped)
 #[('foo', 'one'), ('bar', 'two'), ('baz', 'three')]
 ```
-
-
+```
 
 ___
 
@@ -182,7 +178,7 @@ plt.bar(x = tips.groupby(by='day')['total_bill'].sum().sort_values().index, heig
 ```
 
 
-![png](README_files/README_14_0.png)
+![png](README_files/README_17_0.png)
 
 
 ___
@@ -197,7 +193,7 @@ sns.stripplot(x="day", y="total_bill", data=tips);
 ```
 
 
-![png](README_files/README_18_0.png)
+![png](README_files/README_21_0.png)
 
 
 The `jtter` parameter controls how dispersed the datapoints are.
@@ -208,13 +204,12 @@ sns.stripplot(x="day", y="total_bill", jitter=False, data=tips);
 ```
 
 
-![png](README_files/README_20_0.png)
+![png](README_files/README_23_0.png)
 
 
 ### Plot size
 
 Set the size of the plots by defining the `figsize`.
-
 ```python
 import matplotlib.pyplot as plt
 plt.figure(figsize=(12,12))
@@ -231,7 +226,7 @@ plt.xticks(rotation=90);
 ```
 
 
-![png](README_files/README_26_0.png)
+![png](README_files/README_28_0.png)
 
 
 ___
@@ -244,47 +239,38 @@ get the indexes of a random subsample of y
 ```python
 idxs = np.random.permutation(len(y))[:sample_sz]
 ```
-<br>
 return X starting form the (start) element to the (finish) element
 ```python
 X[start:finish]
 ```
-<br>
 return every element in X but only in the column with index 0 (meaning the 1st column) 
 ```python
 X[:,0]
 ```
-<br>
 return every elemtn in X but only the columns with index 1 and 2 (the last row is omitted)
 ```python
 X[:,1:3]
 ```
-<br>
 return the last element (starts at end minus one -> only last element remains)
 ```python
 cols[-1:]
 ```
-<br>
 return every element **except** the last one (starts at 0 and goes up to the end minus one)
 ```python
 cols[:-1]
 ```
-<br>
 return a tuple of the array dimensions, the dimensions can be accessed via X.shape[0], number depends on which dimension you want; .shape is (rows, columns)
 ```python
 X.shape
 ```
-<br>
 return the sum of an array running vertically downwards across rows and along columns (axis 0) or running horizontally across columns and along rows (axis 1)
 ```python
 x.sum(axis=1)
 ```
-<br>
 return an array from 4.5 to 1.5, divided into 100 equal parts
 ```python
 xvals = np.linspace(4.5,1.5,100)
 ```
-<br>
 .reshape gives a new shape to an array without changing its data; matrices can be reshaped using the parameter -1; numpy allow us to give one of new shape parameter as -1 (eg: (2,-1) or (-1,3) but not (-1, -1)). It simply means that it is an unknown dimension and we want numpy to figure it out.
 ```python
 .reshape((3, 2))
@@ -292,28 +278,26 @@ array([[0, 1],
        [2, 3],
        [4, 5]])
 ```
-<br>
 select rows in a matrix compared to values in a different matrix
 ```python
 pos = np.array([X[i] for i in xrange(X.shape[0]) if y[i] == 1])
 neg = np.array([X[i] for i in xrange(X.shape[0]) if y[i] == 0])
 ```
-<br>
 
 ___
 
 ## pandas
 
+`import pandas as pd`
+
 read file and convert to dataframe
 ```python
 data = pd.DataFrame(pd.read_table('data/ex2data1.txt'))
 ```
-<br>
 get a glimpse of the data
 ```python
 data.head(10)
 ```
-<br>
 compare two dataframes and print dropped columns
 ```python
 df2 = df.dropna(axis=1, how='any')
@@ -352,7 +336,7 @@ the code below can be ignored and serves only my worfklow
     [NbConvertApp] Making directory README_files
     [NbConvertApp] Making directory README_files
     [NbConvertApp] Making directory README_files
-    [NbConvertApp] Writing 11655 bytes to README.md
+    [NbConvertApp] Writing 12055 bytes to README.md
 
 
 
