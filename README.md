@@ -1,7 +1,7 @@
 
 # Python Snippets
 
-# Default imports
+## Default imports
 
 The following code shows the default libraries I import and commands I use at the beginning of nearly every notebook.
 
@@ -20,7 +20,7 @@ sns.set()
 
 The `from fastai...` commands handle most of the libraries I want to import. These short commands might make the process somewhat opaque, having to look up the imports in the fastai .py files themselves if one wants to know what exactly was imported, but saves long lines of `import xyz`  at the beginning of every notebook. The detailed imports fastai makes can be looked up [here](https://github.com/fastai/fastai/tree/master/fastai).
 
-# Jupyter specifics
+## Jupyter specifics
 
 So called "magic commands" are functions specific to Jupyter which are called by putting "%" in front of the command.  
 `%timeit` measures the execution duration of a function. `%prun` runs a function through the python profiler which analyses the runtime of each part of the function and subfunctions called.
@@ -59,9 +59,9 @@ wc -l
 
 ___
 
-# Python
+## Python
 
-**Get overview of dataset**
+### Get overview of dataset
 ```python
 def get_overview_of_dataset(FILES):
     OVERVIEW = {}
@@ -74,7 +74,7 @@ def get_overview_of_dataset(FILES):
     return OVERVIEW
 ```
 
-**Datetime**
+### Datetime
 
 |Type|Description|
 |-----|:-----|
@@ -92,13 +92,14 @@ def get_overview_of_dataset(FILES):
 |%z|UTC time zone offset as+HHMMor-HHMM;<br>empty if time zone naive %F Shortcut for%Y-%m-%d(e.g.,2012-4-18)|
 |%D|Shortcut for%m/%d/%y(e.g.,04/18/12)|
 
-**Data types**
+### Data types
 
 Tuple: immutable - only if an object inside a tuple is mutable, such as a list, you can modify it in-place.  
 List:  mutable - variable-length and their contents can be modified in-place.
 Dict: mutable - a flexibly sized collection of key-value pairs, where key and value are Python objects.
 
-**Ternary expressions**  
+### Ternary expressions
+
 ```python
 if condition:
     value = true-expr
@@ -108,13 +109,13 @@ else:
 value = true-expr if condition else false-expr
 ```
 
-**Unpacking/Destructuring**  
+### Unpacking/Destructuring
 ```python
 tup = 4, 5, (6, 7)
 a, b, (c, d) = tup
 ```
 
-**Swapping variables**  
+### Swapping variables
 ```python
 tmp = a
 a = b
@@ -123,7 +124,7 @@ b = tmp
 b, a = a, b
 ```
 
-**zip**  
+### zip
 
 `zip` “pairs” up the elements of a number of lists, tuples, or other sequences to create a list of tuples:
 ```python
@@ -138,9 +139,9 @@ list(zipped)
 
 ___
 
-# Visualization
+## Visualization
 
-## Using a consistent color palette
+### Using a consistent color palette
 
 Because humans easily attach meaning to various colors subconsciously , it's important to visualize plots in a consistent manner. When drawing diagrams manually, it's a good idea to choose from a consistent color palette. To do so, a consistent color palette can be defined in a dictionary in python:
 
@@ -186,7 +187,7 @@ plt.bar(x = tips.groupby(by='day')['total_bill'].sum().sort_values().index, heig
 
 ___
 
-## Stripplot
+### Stripplot
 
 The Python module seaborn has a neat plot called `stripplot()` to compare the distribution of categorical variables. Using `sns.set()` beforehands sets the theme to seaborn defaults which makes somewhat easier to read in my opinion.
 
@@ -210,7 +211,7 @@ sns.stripplot(x="day", y="total_bill", jitter=False, data=tips);
 ![png](README_files/README_20_0.png)
 
 
-## Plot size
+### Plot size
 
 Set the size of the plots by defining the `figsize`.
 
@@ -219,7 +220,7 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(12,12))
 ```
 
-## Rotate labels
+### Rotate labels
 
 Rotate the labels of your plot to make them readable if they are too long by setting the `xticks` or `yticks` attributes of the plot.
 
@@ -235,7 +236,7 @@ plt.xticks(rotation=90);
 
 ___
 
-# Numpy
+## Numpy
 
 `import numpy as np`
 
@@ -301,7 +302,7 @@ neg = np.array([X[i] for i in xrange(X.shape[0]) if y[i] == 0])
 
 ___
 
-# pandas
+## pandas
 
 read file and convert to dataframe
 ```python
@@ -324,7 +325,7 @@ for c in df.columns:
 
 ___
 
-# fastai
+## fastai
 
 add_datepart converts a column of df from a datetime64 to many columns containing the information from the date. This applies changes inplace.
 ```python
@@ -340,7 +341,19 @@ add_datepart(df, 'A')
 ---
 the code below can be ignored and serves only my worfklow
 
+
+```python
 !jupyter nbconvert --to markdown python_snippets.ipynb --output README.md
+```
+
+    [NbConvertApp] Converting notebook python_snippets.ipynb to markdown
+    [NbConvertApp] Support files will be in README_files/
+    [NbConvertApp] Making directory README_files
+    [NbConvertApp] Making directory README_files
+    [NbConvertApp] Making directory README_files
+    [NbConvertApp] Making directory README_files
+    [NbConvertApp] Writing 11655 bytes to README.md
+
 
 
 ```python
